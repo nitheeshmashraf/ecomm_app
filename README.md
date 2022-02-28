@@ -1,5 +1,7 @@
 # you_app
 
+name changed to Ecomm_app
+
 A new Flutter project.
 
 ## Getting Started
