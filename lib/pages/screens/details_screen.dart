@@ -35,8 +35,10 @@ class DetailScreen extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SearchScreen()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const SearchScreen()));
             },
             icon: const Icon(
               Icons.search_rounded,

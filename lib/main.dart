@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:you_app/pages/screens/search_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:you_app/models/itemlists.dart';
+import 'package:you_app/pages/screens/todo_list.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_) => TodoModel()),
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -17,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const SearchScreen(),
+      home: const TodoList(),
     );
   }
 }

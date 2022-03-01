@@ -17,7 +17,7 @@ class ATCandBuyNow extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            margin: EdgeInsets.only(right: nDefaultPadding),
+            margin: const EdgeInsets.only(right: nDefaultPadding),
             height: 50,
             width: 50,
             decoration: BoxDecoration(
@@ -35,8 +35,8 @@ class ATCandBuyNow extends StatelessWidget {
             child: TextButton(
               style: TextButton.styleFrom(
                 backgroundColor: product.color,
-                minimumSize: Size(150, 50),
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                minimumSize: const Size(150, 50),
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(13)),
                 ),

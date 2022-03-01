@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:you_app/components/cartCounter.dart';
+import 'package:you_app/components/cart_counter.dart';
 import 'package:you_app/constants.dart';
 
 class CounterandWishlist extends StatefulWidget {
@@ -31,7 +31,7 @@ class _CounterandWishlistState extends State<CounterandWishlist> {
             decoration: BoxDecoration(
                 color: isFavorite ? Colors.redAccent : nTextLightColor,
                 shape: BoxShape.circle),
-            child: Icon(
+            child: const Icon(
               Icons.heart_broken_sharp,
               color: Colors.white,
             ),
