@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:you_app/models/category.dart';
 import 'package:you_app/models/products.dart';
 import 'package:you_app/pages/screens/search_screen.dart';
 
@@ -7,6 +8,7 @@ void main() {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => SelectedProductModel()),
+      ChangeNotifierProvider(create: (_) => SelectedCategory()),
     ],
     child: const MyApp(),
   ));

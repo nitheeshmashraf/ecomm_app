@@ -4,6 +4,7 @@ import 'package:you_app/components/categories_list.dart';
 import 'package:you_app/components/product_item_list.dart';
 
 import 'package:you_app/constants.dart';
+import 'package:you_app/models/category.dart';
 import 'package:you_app/models/products.dart';
 import 'package:you_app/pages/screens/details_screen.dart';
 import 'package:provider/provider.dart';
@@ -54,6 +55,7 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final selectProductProvider = Provider.of<SelectedProductModel>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -75,25 +77,24 @@ class Body extends StatelessWidget {
         Expanded(
             child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: nDefaultPadding),
-          child: GridView.builder(
-              itemCount: context.watch<SelectedProductModel>().products.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.75,
-                  mainAxisSpacing: nDefaultPadding,
-                  crossAxisSpacing: nDefaultPadding),
-              itemBuilder: (context, index) => ProductItems(
-                  product:
-                      context.watch<SelectedProductModel>().products[index],
-                  onPress: () => {
-                        context
-                            .read<SelectedProductModel>()
-                            .selectProduct(index),
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => DetailScreen()))
-                      })),
+          child: selectProductProvider.selectedProductList.length == 0
+              ? const Center(child: Text("no items"))
+              : GridView.builder(
+                  itemCount: selectProductProvider.selectedProductList.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 0.75,
+                      mainAxisSpacing: nDefaultPadding,
+                      crossAxisSpacing: nDefaultPadding),
+                  itemBuilder: (context, index) => ProductItems(
+                      product: selectProductProvider.selectedProductList[index],
+                      onPress: () => {
+                            selectProductProvider.selectProduct(index),
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const DetailScreen()))
+                          })),
         ))
       ],
     );
