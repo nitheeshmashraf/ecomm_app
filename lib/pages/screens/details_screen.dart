@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:you_app/components/atcandbuynow.dart';
 import 'package:you_app/components/counterandwishlist.dart';
 import 'package:you_app/components/description.dart';
@@ -9,12 +10,13 @@ import 'package:you_app/models/products.dart';
 import 'package:you_app/pages/screens/search_screen.dart';
 
 class DetailScreen extends StatelessWidget {
-  final Product product;
-
-  const DetailScreen({Key? key, required this.product}) : super(key: key);
+  const DetailScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Product product = context.watch<SelectedProductModel>().selectedProduct;
     return Scaffold(
       backgroundColor: product.color,
       appBar: buildAppBar(context),
@@ -35,8 +37,10 @@ class DetailScreen extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SearchScreen()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const SearchScreen()));
             },
             icon: const Icon(
               Icons.search_rounded,

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:you_app/components/categories_list.dart';
 import 'package:you_app/components/product_item_list.dart';
 
 import 'package:you_app/constants.dart';
 import 'package:you_app/models/products.dart';
 import 'package:you_app/pages/screens/details_screen.dart';
+import 'package:provider/provider.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -74,21 +76,23 @@ class Body extends StatelessWidget {
             child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: nDefaultPadding),
           child: GridView.builder(
-              itemCount: products.length,
+              itemCount: context.watch<SelectedProductModel>().products.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 0.75,
                   mainAxisSpacing: nDefaultPadding,
                   crossAxisSpacing: nDefaultPadding),
               itemBuilder: (context, index) => ProductItems(
-                  product: products[index],
+                  product:
+                      context.watch<SelectedProductModel>().products[index],
                   onPress: () => {
+                        context
+                            .read<SelectedProductModel>()
+                            .selectProduct(index),
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => DetailScreen(
-                                      product: products[index],
-                                    )))
+                                builder: (context) => DetailScreen()))
                       })),
         ))
       ],
